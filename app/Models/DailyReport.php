@@ -8,17 +8,17 @@ class DailyReport extends Model
 {
     protected $fillable =
     [
-        'reporting_time',
         'user_id',
         'title',
-        'content'
+        'content',
+        'reporting_time',
     ];
 
     protected $dates =
     [
         'reporting_time',
-        'created_at',
         'updated_at',
+        'created_at',
         'deleted_at'
     ];
 
