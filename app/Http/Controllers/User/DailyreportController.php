@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\User\DailyReportRequest;
+use App\Http\Requests\User\ResearchDailyReportRequest;
 use App\Models\DailyReport;
 use Auth;
 
@@ -21,7 +21,7 @@ class DailyreportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(ResearchDailyReportRequest $request)
     {
         $filterMonth = $request->query('search-month');
         $userId = Auth::id();
