@@ -33,9 +33,8 @@
       </tbody>
 
     </table>
-
   </div>
-  <div class="paginateWrapper">
+  <div class="text-center">
     {{ $reports->links() }}
   </div>
 

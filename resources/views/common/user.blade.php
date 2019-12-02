@@ -19,12 +19,6 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-    <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
 </head>
 
 <body>
