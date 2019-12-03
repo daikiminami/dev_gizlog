@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Carbon\Carbon;
 
 class DailyReportRequest extends FormRequest
 {
@@ -24,10 +23,9 @@ class DailyReportRequest extends FormRequest
      */
     public function rules()
     {
-        $today = Carbon::now()->format("Y-m-d");
         return
         [
-            'reporting_time' => 'required|date|before_or_equal:'.$today,
+            'reporting_time' => 'required|date|before_or_equal:now',
             'title' => 'required|string|max:30',
             'content' => 'required|string|max:300'
         ];
