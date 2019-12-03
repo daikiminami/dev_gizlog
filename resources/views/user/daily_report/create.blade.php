@@ -5,7 +5,6 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => 'report.store']) !!}
-      {!! Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) !!}
       <div class="form-group form-size-small {{ $errors->has('reporting_time') ? 'has-error' : '' }}">
         {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
         @if ($errors->has('reporting_time'))
