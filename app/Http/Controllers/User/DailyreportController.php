@@ -52,7 +52,7 @@ class DailyreportController extends Controller
 
     public function store(DailyReportRequest $request)
     {
-        $input = $request->all();
+        $input = $request->except('_token');
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
         return redirect()->route('report.index');
