@@ -48,7 +48,7 @@ class DailyreportController extends Controller
 
     public function store(DailyReportRequest $request)
     {
-        $input = $request->except('_token');
+        $input = $request->only('title', 'content', 'reporting_time');
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
         return redirect()->route('report.index');
