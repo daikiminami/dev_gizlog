@@ -11,10 +11,10 @@ use Auth;
 class DailyreportController extends Controller
 {
     private $report;
-    public function __construct(DailyReport $instanceClass)
+    public function __construct(DailyReport $dailyReportInstance)
     {
         $this->middleware('auth');
-        $this->report = $instanceClass;
+        $this->report = $dailyReportInstance;
     }
     /**
      * Display a listing of the resource.
