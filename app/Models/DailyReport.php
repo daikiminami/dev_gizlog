@@ -22,15 +22,19 @@ class DailyReport extends Model
         'deleted_at'
     ];
 
-    public function getbyUserId($id)
+    public function scopeFilterMonth($query, $filter)
     {
-        return $this->where('user_id', $id)->paginate(5);
+        if(!empty($filter['search-month']) && $filter['search-month'] !== null)
+        {
+            $month = $filter['search-month'];
+            return $query->where('reporting_time', 'like', $month.'%');
+        }
     }
 
-    public function getbyFilterMonthAndUserId($filterMonth, $id)
+    public function getByFilterAndUser($filter, $id)
     {
-        return $this->where('user_id', $id)->where('reporting_time', 'like', $filterMonth.'%')->paginate(5);
+        return $this->where('user_id', $id)
+                    ->filterMonth($filter)
+                    ->paginate(5);
     }
-
-    
 }

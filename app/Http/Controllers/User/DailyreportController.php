@@ -23,14 +23,10 @@ class DailyreportController extends Controller
      */
     public function index(ResearchDailyReportRequest $request)
     {
-        $filterMonth = $request->query('search-month');
         $userId = Auth::id();
-        if ($filterMonth === null) {
-            $reports = $this->report->getbyUserId($userId);
-        } else {
-            $reports = $this->report->getbyFilterMonthAndUserId($filterMonth, $userId);
-        }
-        return view('user.daily_report.index', compact('reports', 'filterMonth'));
+        $filter = $request->input();
+        $reports = $this->report->getByFilterAndUser($filter, $userId);
+        return view('user.daily_report.index', compact('reports', 'filter'));        
     }
 
     /**

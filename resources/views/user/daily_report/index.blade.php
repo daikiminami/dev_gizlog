@@ -4,9 +4,8 @@
 <h2 class="brand-header">日報一覧</h2>
 <div class="main-wrap">
   <div class="btn-wrapper daily-report">
-
     {!! Form::open(['route' => 'report.index', 'method' => 'GET']) !!}
-      {!! Form::month('search-month', empty($filterMonth['search-month']) ? null : $filterMonth['search-month'] , ['class' => 'form-control']) !!}
+      {!! Form::month('search-month', empty($filter['search-month']) ? null : $filter['search-month'] , ['class' => 'form-control']) !!}
       {!! Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-icon', 'type' => 'submit']) !!}
     {!! Form::close(); !!}
     <a class="btn btn-icon" href="/report/create"><i class="fa fa-plus"></i></a>
@@ -31,12 +30,10 @@
         </tr>
       @endforeach
       </tbody>
-
     </table>
   </div>
   <div class="text-center">
-    {{ $reports->links() }}
+    {{ $reports->appends(request()->input())->links() }}
   </div>
-
 </div>
 @endsection
