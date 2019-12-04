@@ -24,7 +24,7 @@ class DailyReport extends Model
 
     public function scopeFilterMonth($query, $filter)
     {
-        if(!empty($filter['search-month']) && $filter['search-month'] !== null)
+        if(isset($filter['search-month']))
         {
             $month = $filter['search-month'];
             return $query->where('reporting_time', 'like', $month.'%');
