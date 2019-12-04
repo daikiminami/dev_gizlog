@@ -17,8 +17,6 @@ class DailyReport extends Model
     protected $dates =
     [
         'reporting_time',
-        'updated_at',
-        'created_at',
         'deleted_at'
     ];
 
@@ -33,8 +31,9 @@ class DailyReport extends Model
 
     public function getByFilterAndUser($filter, $id)
     {
-        return $this->where('user_id', $id)
-                    ->filterMonth($filter)
-                    ->paginate(5);
+        return DailyReport::where('user_id', $id)
+                            ->filterMonth($filter)
+                            ->orderBy('reporting_time', 'desc')
+                            ->paginate(5);
     }
 }
