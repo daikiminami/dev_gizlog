@@ -17,9 +17,10 @@ class DailyreportController extends Controller
         $this->report = $dailyReportInstance;
     }
     /**
-     * Display a listing of the resource.
+     * Userのレポートを検索条件によって取得する。
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request\DailyReportRequest  $request
+     * @return View
      */
     public function index(ResearchDailyReportRequest $request)
     {
@@ -30,9 +31,9 @@ class DailyreportController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * レポートの新規作成
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
@@ -40,10 +41,10 @@ class DailyreportController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * ユーザーからの情報を取得し、DBに保存
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request\DailyReportRequest  $request
+     * @return View
      */
 
     public function store(DailyReportRequest $request)
@@ -55,10 +56,10 @@ class DailyreportController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Userのレポートの詳細ページの取得
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($id)
     {
@@ -67,10 +68,10 @@ class DailyreportController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Userのレポートの情報を取得し、編集ページに移動
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit($id)
     {
@@ -79,21 +80,21 @@ class DailyreportController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Userのレポートの更新
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\DailyReportRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(DailyReportRequest $request, $id)
     {
-        $input = $request->all();
+        $input = $request->only('title', 'content', 'reporting_time');
         $this->report->find($id)->fill($input)->save();
         return redirect()->route('report.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Userのレポートの削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
