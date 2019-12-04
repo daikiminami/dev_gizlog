@@ -5,7 +5,6 @@
 <div class="main-wrap">
   <div class="container">
     {!! Form::open(['route' => ['report.update', $report->id], 'method' => 'PUT']) !!}
-    {!! Form::input('hidden', 'user_id', Auth::id(), ['class' => 'form-control']) !!}
     <div class="form-group form-size-small {{ $errors->has('reporting_time') ? 'has-error' : '' }}">
       {!! Form::input('date', 'reporting_time', $report->reporting_time->format('Y-m-d'), ['class' => 'form-control']) !!}
       <span class="help-block">
@@ -24,7 +23,7 @@
         <strong>{{ $errors->first('content') }}</strong>
       </span>
     </div>
-    <button type="submit" class="btn btn-success pull-right">Update</button>
+    {!! Form::submit('Update', ['class' => 'btn btn-success pull-right']) !!}
     {!! Form::close() !!}
   </div>
 </div>
