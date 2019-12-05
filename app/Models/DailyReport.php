@@ -24,8 +24,7 @@ class DailyReport extends Model
     {
         if(isset($filter['search-month']))
         {
-            $month = $filter['search-month'];
-            return $query->where('reporting_time', 'like', $month.'%');
+            return $query->where('reporting_time', 'like', $filter['search-month'].'%');
         }
     }
 
