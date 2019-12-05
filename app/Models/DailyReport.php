@@ -22,9 +22,9 @@ class DailyReport extends Model
 
     public function scopeFilterMonth($query, $filter)
     {
-        if(isset($filter['search-month']))
+        if(isset($filter['search_month']))
         {
-            return $query->where('reporting_time', 'like', $filter['search-month'].'%');
+            return $query->where('reporting_time', 'like', $filter['search_month'].'%');
         }
     }
 

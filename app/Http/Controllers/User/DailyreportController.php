@@ -16,6 +16,7 @@ class DailyreportController extends Controller
         $this->middleware('auth');
         $this->report = $dailyReportInstance;
     }
+
     /**
      * Userのレポートを検索条件によって取得する。
      *
@@ -46,7 +47,6 @@ class DailyreportController extends Controller
      * @param  \Illuminate\Http\Request\DailyReportRequest  $request
      * @return View
      */
-
     public function store(DailyReportRequest $request)
     {
         $input = $request->only('title', 'content', 'reporting_time');

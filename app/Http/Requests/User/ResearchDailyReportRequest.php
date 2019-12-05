@@ -25,7 +25,7 @@ class ResearchDailyReportRequest extends FormRequest
     public function rules()
     {
         return [
-            'search-month' => 'date|date_format:Y-m'
+            'search_month' => 'date|date_format:Y-m'
         ];
     }
 }
