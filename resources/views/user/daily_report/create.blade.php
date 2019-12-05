@@ -6,7 +6,7 @@
   <div class="container">
     {!! Form::open(['route' => 'report.store']) !!}
       <div class="form-group form-size-small {{ $errors->has('reporting_time') ? 'has-error' : '' }}">
-        {!! Form::input('date', 'reporting_time', null, ['class' => 'form-control']) !!}
+        {!! Form::input('date', 'reporting_time', today()->format('Y-m-d'), ['class' => 'form-control']) !!}
         <span class="help-block">
           <strong>{{ $errors->first('reporting_time') }}</strong>
         </span>
