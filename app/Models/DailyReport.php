@@ -34,6 +34,6 @@ class DailyReport extends Model
         return DailyReport::where('user_id', $id)
                             ->filterMonth($filter)
                             ->orderBy('reporting_time', 'desc')
-                            ->paginate(5);
+                            ->paginate(10);
     }
 }
