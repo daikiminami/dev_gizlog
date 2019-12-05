@@ -20,18 +20,18 @@ class DailyReport extends Model
         'deleted_at'
     ];
 
-    public function scopeFilterMonth($query, $filter)
+    public function scopeFilterMonth($query, $input)
     {
-        if(isset($filter['search_month']))
+        if(isset($input['search_month']))
         {
-            return $query->where('reporting_time', 'like', $filter['search_month'].'%');
+            return $query->where('reporting_time', 'like', $input['search_month'].'%');
         }
     }
 
-    public function getByFilterAndUser($filter, $id)
+    public function getDailyReportList($input, $id)
     {
         return DailyReport::where('user_id', $id)
-                            ->filterMonth($filter)
+                            ->filterMonth($input)
                             ->orderBy('reporting_time', 'desc')
                             ->paginate(10);
     }

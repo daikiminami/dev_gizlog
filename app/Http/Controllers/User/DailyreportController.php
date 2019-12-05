@@ -11,14 +11,14 @@ use Auth;
 class DailyreportController extends Controller
 {
     private $report;
-    public function __construct(DailyReport $dailyReportInstance)
+    public function __construct(DailyReport $dailyReport)
     {
         $this->middleware('auth');
-        $this->report = $dailyReportInstance;
+        $this->report = $dailyReport;
     }
 
     /**
-     * Userのレポートを検索条件によって取得する。
+     * 指定のユーザのレポートを一覧で取得する
      *
      * @param  \Illuminate\Http\Request\DailyReportRequest  $request
      * @return View
@@ -26,9 +26,9 @@ class DailyreportController extends Controller
     public function index(ResearchDailyReportRequest $request)
     {
         $userId = Auth::id();
-        $filter = $request->validated();
-        $reports = $this->report->getByFilterAndUser($filter, $userId);
-        return view('user.daily_report.index', compact('reports', 'filter'));        
+        $input = $request->validated();
+        $reports = $this->report->getDailyReportList($input, $userId);
+        return view('user.daily_report.index', compact('reports', 'input'));        
     }
 
     /**
