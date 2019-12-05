@@ -26,7 +26,7 @@ class DailyreportController extends Controller
     public function index(ResearchDailyReportRequest $request)
     {
         $userId = Auth::id();
-        $filter = $request->input();
+        $filter = $request->validate();
         $reports = $this->report->getByFilterAndUser($filter, $userId);
         return view('user.daily_report.index', compact('reports', 'filter'));        
     }
@@ -49,7 +49,7 @@ class DailyreportController extends Controller
      */
     public function store(DailyReportRequest $request)
     {
-        $input = $request->only('title', 'content', 'reporting_time');
+        $input = $request->all();
         $input['user_id'] = Auth::id();
         $this->report->fill($input)->save();
         return redirect()->route('report.index');
