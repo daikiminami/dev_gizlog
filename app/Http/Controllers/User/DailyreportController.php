@@ -26,7 +26,7 @@ class DailyreportController extends Controller
     public function index(ResearchDailyReportRequest $request)
     {
         $userId = Auth::id();
-        $filter = $request->validate();
+        $filter = $request->validated();
         $reports = $this->report->getByFilterAndUser($filter, $userId);
         return view('user.daily_report.index', compact('reports', 'filter'));        
     }
