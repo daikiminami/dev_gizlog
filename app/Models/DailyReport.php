@@ -29,9 +29,9 @@ class DailyReport extends Model
 
     public function getDailyReportList($input, $id)
     {
-        return DailyReport::where('user_id', $id)
-                            ->filterMonth($input)
-                            ->orderBy('reporting_time', 'desc')
-                            ->paginate(10);
+        return $this->where('user_id', $id)
+                    ->filterMonth($input)
+                    ->orderBy('reporting_time', 'desc')
+                    ->paginate(10);
     }
 }
