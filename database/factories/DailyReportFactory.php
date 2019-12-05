@@ -9,8 +9,5 @@ $factory->define(Report::class, function (Faker $faker) {
         'title' => $faker->text(15),
         'content' => $faker->text(100),
         'reporting_time' => $faker->DateTime->format('2019-m-d'),
-        'updated_at' => $faker->DateTime->format('2019-m-d'),
-        'created_at' => $faker->DateTime->format('2019-m-d'),
-        'deleted_at' => null
     ];
 });
