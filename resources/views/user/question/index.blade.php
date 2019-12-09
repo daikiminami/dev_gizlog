@@ -8,7 +8,7 @@
     <div class="btn-wrapper">
       <div class="search-box">
         <!-- <input class="form-control search-form" placeholder="Search words..." name="search_word" type="text"> -->
-        {!! Form::input('text', 'search_word', null, ['class' => 'form-control search-form']) !!}
+        {!! Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         <!-- <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button> -->
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
       </div>
