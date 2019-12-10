@@ -26,8 +26,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $userId = Auth::id();
-        $questions = $this->question->getUserQuestion($userId);
+        $questions = $this->question->all();
         return view('user.question.index', compact('questions'));
     }
 
@@ -64,7 +63,6 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
