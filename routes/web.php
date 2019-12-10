@@ -41,6 +41,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
     Route::get('attendance/mypage', ['as' => 'attendance.mypage', 'uses' => 'AttendanceController@showMypage']);
 
     Route::resource('report', DailyReportController::class);
+    Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@mypage']);
     Route::resource('question', QuestionController::class);
 });
 

@@ -27,7 +27,8 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = $this->question->all();
-        return view('user.question.index', compact('questions'));
+        $currentUser = Auth::user();
+        return view('user.question.index', compact('questions', 'currentUser'));
     }
 
     /**
@@ -76,7 +77,6 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -100,5 +100,12 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mypage()
+    {
+        $currentUser = Auth::user();
+        $questions = $this->question->getCurrentUserQuestion($currentUser['id']);
+        return view('user.question.mypage', compact('questions', 'currentUser'));
     }
 }

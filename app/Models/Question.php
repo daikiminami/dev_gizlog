@@ -33,7 +33,7 @@ class Question extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
-    public function getUserQuestion($id)
+    public function getCurrentUserQuestion($id)
     {
         return $this->where('user_id', $id)->get();
     }
