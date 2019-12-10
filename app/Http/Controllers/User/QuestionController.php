@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\TagCategory;
 use App\Models\Comment;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -63,6 +63,9 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
+        $currentUser = Auth::user();
+        $question = $this->question->find($id);
+        return view('user.question.show', compact('question', 'currentUser'));
     }
 
     /**

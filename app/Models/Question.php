@@ -13,14 +13,19 @@ class Question extends Model
         'content'
     ];
 
+    protected $dates = 
+    [
+        'created_at'
+    ];
+
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function tagCategory()
     {
-        return $this->belongsTo('App\Models\TagCategory', 'tag_category_id');
+        return $this->belongsTo(TagCategory::class, 'tag_category_id');
     }
 
     public function comment()
