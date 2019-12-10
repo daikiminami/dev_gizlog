@@ -4,9 +4,21 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Question;
+use App\Models\TagCategory;
+use App\Models\Comment;
+use Auth;
 
 class QuestionController extends Controller
 {
+    private $question;
+
+    public function __construct(Question $question, TagCategory $tagCategory, Comment $comment)
+    {
+        $this->middleware('auth');
+        $this->question = $question;
+        $this->tagCategory = $tagCategory;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('user.question.index');
+        $userId = Auth::id();
+        $questions = $this->question->getUserQuestion($userId);
+        return view('user.question.index', compact('questions'));
     }
 
     /**
@@ -24,7 +38,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('user.question.create');
+        $categories = $this->tagCategory->all();
+        return view('user.question.create', compact('categories'));
     }
 
     /**
@@ -35,7 +50,10 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->question->fill($input)->save();
+        return redirect()->route('question.index');
     }
 
     /**

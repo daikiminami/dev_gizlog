@@ -7,11 +7,12 @@
     <!-- <form> -->
     {!! Form::open(['route' => 'question.store']) !!}
       <div class="form-group">
-        <!-- <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
+        <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
           <option value="">Select category</option>
-            <option value= ""></option>
-        </select> -->
-        {!! Form::select('tag_category_id', ['FRONT', 'BACK', 'INFRA', 'OTHERS'], null, ['class' => 'form-control selectpicker form-size-small', 'id' => 'pref_id', 'placeholder' => 'Select category']) !!}
+          @foreach ($categories as $category)
+            <option value= "{{ $category->id }}">{{ strtoupper($category->name) }}</option>
+          @endforeach
+        </select>
         <span class="help-block"></span>
       </div>
       <div class="form-group">
