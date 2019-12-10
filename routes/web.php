@@ -42,6 +42,7 @@ Route::group(['prefix' => '/', 'user.', 'namespace' => 'User'], function () {
 
     Route::resource('report', DailyReportController::class);
     Route::get('question/{id}/mypage', ['as' => 'question.mypage', 'uses' => 'QuestionController@mypage']);
+    Route::get('question/{question}/confirm', ['as' => 'question.confirm', 'uses' => 'QuestionController@confirm']);
     Route::resource('question', QuestionController::class);
 });
 
