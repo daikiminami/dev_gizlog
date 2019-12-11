@@ -111,4 +111,18 @@ class QuestionController extends Controller
         $questions = $this->question->getCurrentUserQuestion($currentUser['id']);
         return view('user.question.mypage', compact('questions', 'currentUser'));
     }
+
+    /**
+     * 質問の新規作成・更新前の確認画面
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     */
+    public function confirm(Request $request, $id)
+    {
+        $question = $request->all();
+        $questionId = $id;
+        $category = $this->tagCategory->find($question['tag_category_id']);
+        return view('user.question.confirm', compact('question', 'category', 'questionId'));
+    }
 }
