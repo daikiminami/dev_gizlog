@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Question extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'user_id',
         'tag_category_id',
@@ -15,7 +18,8 @@ class Question extends Model
 
     protected $dates = 
     [
-        'created_at'
+        'created_at',
+        'deleted_at'
     ];
 
     public function user()
