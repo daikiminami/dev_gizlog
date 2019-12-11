@@ -91,7 +91,11 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $input['user_id'] = Auth::id();
+        $this->question->fill($input)->save();
+        return redirect()->route('question.index');
+
     }
 
     /**
@@ -102,7 +106,6 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     public function mypage()

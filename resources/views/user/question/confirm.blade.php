@@ -25,7 +25,7 @@
   <div class="btn-bottom-wrapper">
   <!-- question['confirm']がない場合 -->
     @if ( $question['confirm'] === 'Update')
-        {!! Form::open(['route' => ['question.update', $questionId]]) !!}
+        {!! Form::open(['route' => ['question.update', $questionId], 'method' => 'PUT']) !!}
     @else
         {!! Form::open(['route' => 'question.store']) !!}
     @endif
