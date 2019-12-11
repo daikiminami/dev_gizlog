@@ -5,7 +5,7 @@
 
 <div class="main-wrap">
   <div class="container">
-    {!! Form::open(['route' => ['question.confirm', $question->id]]) !!}
+    {!! Form::open(['route' => ['update.confirm', $question->id]]) !!}
       <div class="form-group">
         <select name='tag_category_id' class = "form-control selectpicker form-size-small" id ="pref_id">
           <option value="{{ $question->tagCategory->id }}">{{ strtoupper($question->tagCategory->name) }}</option>

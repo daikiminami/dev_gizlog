@@ -123,7 +123,7 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      */
-    public function confirm(Request $request, $id)
+    public function confirm(Request $request, $id = null)
     {
         $question = $request->all();
         $questionId = $id;
