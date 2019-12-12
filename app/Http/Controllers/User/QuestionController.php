@@ -28,7 +28,6 @@ class QuestionController extends Controller
      */
     public function index(SearchQuestionsRequest $request)
     {
-
         $input = $request->only('search_word', 'tag_category_id');
         $questions = $this->question->getQuestion($input);
         $currentUser = Auth::user();
@@ -53,9 +52,9 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(QuestionsRequest $questionsRequest)
+    public function store(QuestionRequest $questionRequest)
     {
-        $input = $questionsRequest->validated();
+        $input = $questionRequest->validated();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
         return redirect()->route('question.index');
@@ -94,9 +93,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(QuestionsRequest $questionsRequest, $id)
+    public function update(QuestionRequest $questionRequest, $id)
     {
-        $input = $questionsRequest->validated();
+        $input = $questionRequest->validated();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
         return redirect()->route('question.index');
@@ -128,9 +127,9 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      */
-    public function confirm(QuestionsRequest $questionsRequest, $id = null)
+    public function confirm(QuestionRequest $questionRequest, $id = null)
     {
-        $inputs = $questionsRequest->all();
+        $inputs = $questionRequest->all();
         $questionId = $id;
         $category = $this->tagCategory->find($inputs['tag_category_id']);
         return view('user.question.confirm', compact('inputs', 'category', 'questionId'));
