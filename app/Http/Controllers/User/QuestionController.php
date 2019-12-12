@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\SearchQuestionRequest;
 use App\Models\Question;
 use App\Models\TagCategory;
 use App\Models\Comment;
@@ -24,11 +25,14 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(SearchQuestionRequest $request)
     {
-        $questions = $this->question->all();
+
+        $input = $request->only('search_word', 'tag_category_id');
+        $questions = $this->question->getQuestion($input);
         $currentUser = Auth::user();
-        return view('user.question.index', compact('questions', 'currentUser'));
+        $categories = $this->tagCategory->all();
+        return view('user.question.index', compact('questions', 'currentUser', 'categories', 'input'));
     }
 
     /**

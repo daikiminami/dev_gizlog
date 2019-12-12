@@ -7,9 +7,7 @@
   {!! Form::open(['route' => 'question.index', 'method' => 'GET']) !!}
     <div class="btn-wrapper">
       <div class="search-box">
-        <!-- <input class="form-control search-form" placeholder="Search words..." name="search_word" type="text"> -->
-        {!! Form::input('text', 'search_word', null, ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
-        <!-- <button type="submit" class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+        {!! Form::input('text', 'search_word', $input['search_word'] ?? '', ['class' => 'form-control search-form', 'placeholder' => 'Search words...']) !!}
         {!! Form::button('<i class="fa fa-search" aria-hidden="true"></i>', ['class' => 'search-icon', 'type' => 'submit']) !!}
       </div>
       <a class="btn" href="/question/create"><i class="fa fa-plus" aria-hidden="true"></i></a>
@@ -18,11 +16,12 @@
       </a>
     </div>
     <div class="category-wrap">
-      <div class="btn all" id="0">all</div>
-      <div class="btn" id=""></div>
-      <input id="category-val" name="tag_category_id" type="hidden" value="">
+      <div class="btn all {{ empty($input['tag_category_id']) ? 'selected' : '' }}" id="0">all</div>
+      @foreach ($categories as $category)
+        <div class="btn {{$category->name}} {{ $category->name }}-{{ $input['tag_category_id'] ?? '' }}" id="{{ $category->id }}">{{ $category->name }}</div>
+      @endforeach
+      {!! Form::input('hidden', 'tag_category_id', $input['tag_category_id'] ?? 0, ['id' => 'category-val']) !!}
     </div>
-  <!-- </form> -->
   {!! Form::close() !!}
   <div class="content-wrapper table-responsive">
     <table class="table table-striped">
@@ -51,7 +50,7 @@
       @endforeach
       </tbody>
     </table>
-    <div aria-label="Page navigation example" class="text-center"></div>
+    <div aria-label="Page navigation example" class="text-center">{{ $questions->appends(request()->input())->links() }}</div>
   </div>
 </div>
 

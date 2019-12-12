@@ -37,6 +37,28 @@ class Question extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
+    public function scopeFilterCategory($query, $input)
+    {
+        return (empty($input['tag_category_id']))? $query : $query->where('tag_category_id', $input['tag_category_id']);  
+    
+    }
+
+    public function scopeFilterWord($query, $input)
+    {
+
+        if (isset($input['search_word'])) {
+            return $query->where('title', 'like', '%'.$input['search_word'].'%');
+        }
+    }
+
+    public function getQuestion($input)
+    {
+        return $this->filterCategory($input)
+                    ->filterWord($input)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(10);
+    }
+
     public function getCurrentUserQuestion($id)
     {
         return $this->where('user_id', $id)->get();
