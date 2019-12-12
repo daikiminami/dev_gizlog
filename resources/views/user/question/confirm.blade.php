@@ -12,11 +12,11 @@
         <tbody>
           <tr>
             <th class="table-column">Title</th>
-            <td class="td-text">{{ $question['title'] }}</td>
+            <td class="td-text">{{ $inputs['title'] }}</td>
           </tr>
           <tr>
             <th class="table-column">Question</th>
-            <td class='td-text'>{{ $question['content'] }}</td>
+            <td class='td-text'>{{ $inputs['content'] }}</td>
           </tr>
         </tbody>
       </table>
@@ -24,14 +24,14 @@
   </div>
   <div class="btn-bottom-wrapper">
   <!-- question['confirm']がない場合 -->
-    @if ( $question['confirm'] === 'Update')
+    @if ( $inputs['confirm'] === 'Update')
         {!! Form::open(['route' => ['question.update', $questionId], 'method' => 'PUT']) !!}
     @else
         {!! Form::open(['route' => 'question.store']) !!}
     @endif
-            {!! Form::input('hidden', 'tag_category_id', $question['tag_category_id']) !!}
-            {!! Form::input('hidden', 'title', $question['title']) !!}
-            {!! Form::input('hidden', 'content', $question['content']) !!}
+            {!! Form::input('hidden', 'tag_category_id', $inputs['tag_category_id']) !!}
+            {!! Form::input('hidden', 'title', $inputs['title']) !!}
+            {!! Form::input('hidden', 'content', $inputs['content']) !!}
             {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit', 'aria-hidden' => 'true']) !!}
         {!! Form::close(); !!}
   </div>

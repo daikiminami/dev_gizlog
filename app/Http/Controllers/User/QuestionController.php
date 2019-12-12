@@ -4,7 +4,8 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\SearchQuestionRequest;
+use App\Http\Requests\User\SearchQuestionsRequest;
+use App\Http\Requests\User\QuestionsRequest;
 use App\Models\Question;
 use App\Models\TagCategory;
 use App\Models\Comment;
@@ -25,7 +26,7 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(SearchQuestionRequest $request)
+    public function index(SearchQuestionsRequest $request)
     {
 
         $input = $request->only('search_word', 'tag_category_id');
@@ -52,9 +53,9 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionsRequest $questionsRequest)
     {
-        $input = $request->all();
+        $input = $questionsRequest->validated();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
         return redirect()->route('question.index');
@@ -93,9 +94,9 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionsRequest $questionsRequest, $id)
     {
-        $input = $request->all();
+        $input = $questionsRequest->validated();
         $input['user_id'] = Auth::id();
         $this->question->fill($input)->save();
         return redirect()->route('question.index');
@@ -127,11 +128,11 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      */
-    public function confirm(Request $request, $id = null)
+    public function confirm(QuestionsRequest $questionsRequest, $id = null)
     {
-        $question = $request->all();
+        $inputs = $questionsRequest->all();
         $questionId = $id;
-        $category = $this->tagCategory->find($question['tag_category_id']);
-        return view('user.question.confirm', compact('question', 'category', 'questionId'));
+        $category = $this->tagCategory->find($inputs['tag_category_id']);
+        return view('user.question.confirm', compact('inputs', 'category', 'questionId'));
     }
 }
