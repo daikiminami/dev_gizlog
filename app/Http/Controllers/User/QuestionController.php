@@ -21,9 +21,10 @@ class QuestionController extends Controller
         $this->tagCategory = $tagCategory;
     }
     /**
-     * Display a listing of the resource.
+     * 質問一覧表示
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request\SearchQuestionsRequest  $request
+     * @return View
      */
     public function index(SearchQuestionsRequest $request)
     {
@@ -35,9 +36,8 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 質問新規作成ページの表示
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -46,9 +46,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 質問掲示板の保存
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\QuestionRequest  $rquestionRequest
      * @return \Illuminate\Http\Response
      */
     public function store(QuestionRequest $questionRequest)
@@ -60,10 +60,10 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 質問の詳細ページ
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($id)
     {
@@ -74,10 +74,10 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 質問編集
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit($id)
     {
@@ -87,9 +87,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * 質問の更新
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\QuestionRequest  $rquestionRequest
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -103,7 +103,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 質問の削除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -114,6 +114,11 @@ class QuestionController extends Controller
         return redirect()->route('question.index');
     }
 
+    /**
+     * ユーザーページの表示
+     *
+     * @return View
+     */
     public function mypage()
     {
         $currentUser = Auth::user();

@@ -18,6 +18,12 @@ class CommentController extends Controller
         $this->question = $question;
     }
 
+    /**
+     * コメントの保存
+     *
+     * @param  \Illuminate\Http\Request\Reques $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $input = $request->all();
