@@ -7,7 +7,7 @@
     {!! Form::open(['route' => 'question.confirm']) !!}
       <div class="form-group {{ $errors->has('tag_category_id') ? 'has-error' : '' }}">
         <select name='tag_category_id' class = "form-control selectpicker form-size-small" id="pref_id">
-            <option value="">Select category</option>
+          <option value="">Select category</option>
           @foreach ($categories as $category)
             <option value= "{{ $category->id }}">{{ $category->name }}</option>
           @endforeach

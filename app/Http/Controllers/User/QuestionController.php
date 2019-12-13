@@ -8,7 +8,6 @@ use App\Http\Requests\User\SearchQuestionsRequest;
 use App\Http\Requests\User\QuestionRequest;
 use App\Models\Question;
 use App\Models\TagCategory;
-use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
@@ -94,7 +93,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(QuestionRequest $questionRequest, $id)
+    public function update(QuestionRequest $questionRequest)
     {
         $input = $questionRequest->validated();
         $input['user_id'] = Auth::id();

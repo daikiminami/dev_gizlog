@@ -23,17 +23,16 @@
     </div>
   </div>
   <div class="btn-bottom-wrapper">
-  <!-- question['confirm']がない場合 -->
     @if ( $inputs['confirm'] === 'Update')
-        {!! Form::open(['route' => ['question.update', $questionId], 'method' => 'PUT']) !!}
+      {!! Form::open(['route' => ['question.update', $questionId], 'method' => 'PUT']) !!}
     @else
-        {!! Form::open(['route' => 'question.store']) !!}
+      {!! Form::open(['route' => 'question.store']) !!}
     @endif
-            {!! Form::input('hidden', 'tag_category_id', $inputs['tag_category_id']) !!}
-            {!! Form::input('hidden', 'title', $inputs['title']) !!}
-            {!! Form::input('hidden', 'content', $inputs['content']) !!}
-            {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit', 'aria-hidden' => 'true']) !!}
-        {!! Form::close(); !!}
+        {!! Form::input('hidden', 'tag_category_id', $inputs['tag_category_id']) !!}
+        {!! Form::input('hidden', 'title', $inputs['title']) !!}
+        {!! Form::input('hidden', 'content', $inputs['content']) !!}
+        {!! Form::button('<i class="fa fa-check" aria-hidden="true"></i>', ['class' => 'btn btn-success', 'type' => 'submit', 'aria-hidden' => 'true']) !!}
+      {!! Form::close(); !!}
   </div>
 </div>
 
