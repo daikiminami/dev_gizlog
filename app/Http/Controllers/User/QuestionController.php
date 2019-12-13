@@ -89,15 +89,15 @@ class QuestionController extends Controller
     /**
      * 質問の更新
      *
-     * @param  \Illuminate\Http\Request\QuestionRequest  $rquestionRequest
+     * @param  \Illuminate\Http\Request\QuestionRequest  $requestionRequest
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(QuestionRequest $questionRequest)
+    public function update(QuestionRequest $questionRequest, $id)
     {
         $input = $questionRequest->validated();
         $input['user_id'] = Auth::id();
-        $this->question->fill($input)->save();
+        $this->question->find($id)->fill($input)->save();
         return redirect()->route('question.index');
 
     }
