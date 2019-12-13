@@ -26,8 +26,8 @@ class QuestionRequest extends FormRequest
         return
         [
             'tag_category_id' => 'exists:tag_categories,id',
-            'title' => 'required',
-            'content' => 'required'
+            'title' => 'required|max:100',
+            'content' => 'required|max:1000'
         ];
     }
 
@@ -36,7 +36,8 @@ class QuestionRequest extends FormRequest
         return 
         [
             'tag_category_id.exists' => '入力必須項目です',
-            '*.required' => '入力必須項目です'
+            '*.required' => '入力必須項目です',
+            '*.max' => ':max文字以内の文字を入力してください'
         ];
     }
 }
