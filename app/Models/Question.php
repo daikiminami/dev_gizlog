@@ -53,7 +53,8 @@ class Question extends Model
 
     public function getQuestion($input)
     {
-        return $this->filterCategory($input)
+        return $this->with('user', 'tagCategory', 'comments')
+                    ->filterCategory($input)
                     ->filterWord($input)
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
@@ -61,7 +62,9 @@ class Question extends Model
 
     public function getCurrentUserQuestion($id)
     {
-        return $this->where('user_id', $id)->get();
+        return $this->with('comments', 'tagCategory')
+                    ->where('user_id', $id)
+                    ->paginate(10);
     }
 }
 
