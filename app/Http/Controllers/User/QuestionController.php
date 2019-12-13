@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\SearchQuestionsRequest;
-use App\Http\Requests\User\QuestionsRequest;
+use App\Http\Requests\User\QuestionRequest;
 use App\Models\Question;
 use App\Models\TagCategory;
 use App\Models\Comment;
@@ -15,7 +15,7 @@ class QuestionController extends Controller
 {
     private $question;
 
-    public function __construct(Question $question, TagCategory $tagCategory, Comment $comment)
+    public function __construct(Question $question, TagCategory $tagCategory)
     {
         $this->middleware('auth');
         $this->question = $question;
@@ -68,9 +68,10 @@ class QuestionController extends Controller
      */
     public function show($id)
     {
-        $currentUser = Auth::user();
         $question = $this->question->find($id);
-        return view('user.question.show', compact('question', 'currentUser'));
+        $currentUser = Auth::user();
+        $comments = $question->comments;
+        return view('user.question.show', compact('question', 'currentUser', 'comments'));
     }
 
     /**

@@ -23,7 +23,7 @@
           <td class="col-xs-2">{{ $question->created_at->format('Y-m-d') }}</td>
           <td class="col-xs-1">{{ $question->tagCategory->name }}</td>
           <td class="col-xs-5">{{ $question->title }}</td>
-          <td class="col-xs-2"><span class="point-color">{{ count($question->comment) }}</span></td>
+          <td class="col-xs-2"><span class="point-color">{{ count($question->comments) }}</span></td>
           <td class="col-xs-1">
             <a class="btn btn-success" href="{{ route('question.edit', $question->id) }}">
               <i class="fa fa-pencil" aria-hidden="true"></i>

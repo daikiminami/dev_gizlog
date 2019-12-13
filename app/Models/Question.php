@@ -32,9 +32,9 @@ class Question extends Model
         return $this->belongsTo(TagCategory::class, 'tag_category_id');
     }
 
-    public function comment()
+    public function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     public function scopeFilterCategory($query, $input)
