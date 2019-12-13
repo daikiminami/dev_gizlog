@@ -64,6 +64,7 @@ class Question extends Model
     {
         return $this->with('comments', 'tagCategory')
                     ->where('user_id', $id)
+                    ->orderBy('created_at', 'desc')
                     ->paginate(10);
     }
 }

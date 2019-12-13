@@ -38,6 +38,7 @@
         @endforeach
       </tbody>
     </table>
+    <div aria-label="Page navigation example" class="text-center">{{ $questions->appends(request()->input())->links() }}</div>
   </div>
 </div>
 
