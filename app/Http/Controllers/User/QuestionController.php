@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\SearchQuestionsRequest;
 use App\Http\Requests\User\QuestionRequest;
 use App\Models\Question;
 use App\Models\TagCategory;
@@ -23,10 +22,10 @@ class QuestionController extends Controller
     /**
      * 質問一覧表示
      *
-     * @param  \Illuminate\Http\Request\SearchQuestionsRequest  $request
+     * @param  \Illuminate\Http\Request\Request  $request
      * @return View
      */
-    public function index(SearchQuestionsRequest $request)
+    public function index(Request $request)
     {
         $input = $request->only('search_word', 'tag_category_id');
         $questions = $this->question->getQuestion($input);
