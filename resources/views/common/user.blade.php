@@ -77,6 +77,9 @@
           <li>
             <a href="{{ route('question.index') }}"><i class="fa fa-comments-o">質問掲示板</i></a>
           </li>
+          <li>
+            <a href="{{ route('message.index') }}"><i class="fa fa-envelope">Mail</i></a>
+          </li>
         </ul>
       </div>
     </div>
